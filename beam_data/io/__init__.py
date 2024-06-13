@@ -1,0 +1,1 @@
+from beam_data.io.conection import CSVToDictGenerator

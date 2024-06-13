@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "mode": "NULLABLE",
+            "type": "STRING",
+            "description": null,
+            "fields": []
+        },
+        {
+            "name": "publication_date",
+            "mode": "NULLABLE",
+            "type": "STRING",
+            "description": null,
+            "fields": []
+        },
+        {
+            "name": "author",
+            "mode": "NULLABLE",
+            "type": "STRING",
+            "description": null,
+            "fields": []
+        },
+        {
+            "name": "news",
+            "mode": "NULLABLE",
+            "type": "STRING",
+            "description": null,
+            "fields": []
+        }
+    ]
+}

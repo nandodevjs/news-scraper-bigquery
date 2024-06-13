@@ -1,0 +1,11 @@
+{
+    "name": "bbc-scrapy-dataflow",
+    "description": "Pipeline that get data from bbc.com to Bigquery",
+    "parameters": [
+      {
+        "name": "file_path",
+        "label": "caminho",
+        "helpText": "setup_file"
+      }
+    ]
+}

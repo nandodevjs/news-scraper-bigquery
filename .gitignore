@@ -1,0 +1,12 @@
+# Custom Excludes
+venv/
+.pytest_cache/
+
+
+#Compiled Python bytecode
+*.py[cod]
+__pycache__
+*__pycache__
+
+*.egg-info
+*.ipynb

@@ -1,0 +1,61 @@
+steps:
+# Build the Scrapy container image
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'build-scrapy-docker'
+  args: ['build', '-t', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/scrapy:latest', '-f', 'news_scraper/Dockerfile', 'news_scraper/']
+
+# Push the Scrapy container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'push-scrapy-image'
+  args: ['push', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/scrapy:latest']
+
+# Build the Dataflow container image
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'build-dataflow-docker'
+  args: ['build', '-t', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/dataflow:latest', '.']
+
+# Push the Dataflow container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'push-dataflow-image'
+  args: ['push', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/dataflow:latest']
+
+# Build the Dataflow Flex Template
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'build-dataflow-template'
+  entrypoint: 'gcloud'
+  args: [
+    'dataflow', 'flex-template', 'build', 'gs://scrapy-bbc/Dataflow/template/dataflow.json',
+    '--image', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/dataflow:latest',
+    '--sdk-language', 'PYTHON', '--metadata-file', 'metadata.json'
+  ]
+
+images:
+- southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/scrapy
+- southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/dataflow
+
+
+
+
+
+
+
+
+# steps:
+# # Build the container image
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: 'build-docker'
+#   args: ['build', '-t', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/bbc-scrapy:latest', '.']
+
+# # Push the container image to Container Registry
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: 'push-image'
+#   args: ['push', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/bbc-scrapy:latest']
+
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   id: 'build-dataflow-template'
+#   entrypoint: 'gcloud'
+#   args: [ 'dataflow', 'flex-template', 'build', 'gs://scrapy-bbc/Dataflow/template/bbc-scrapy.json', '--image', 'southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/bbc-scrapy:latest', '--sdk-language', 'PYTHON', '--metadata-file', 'metadata.json']
+
+# images:
+# - southamerica-east1-docker.pkg.dev/lima-consulting-prd/lima-consulting-art/bbc-scrapy
