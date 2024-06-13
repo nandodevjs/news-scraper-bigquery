@@ -2,6 +2,7 @@ from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
 from apache_beam.options.pipeline_options import PipelineOptions
 from beam_data.options.p_options import Config_Options
 from beam_data.io.csv_to_dict import CSVToDictGenerator
+from beam_data.utils.getting_sm import access_secret_version
 
 import apache_beam as beam
 from pathlib import Path
@@ -16,10 +17,18 @@ def main(argv=None):
     pipeline_options.view_as(SetupOptions).save_main_session = True
     pip_dict = pipeline_options.get_all_options()
 
-    FILE_PATH = Path(__file__).parent / 'beam_data' / 'schemas' / 'NEWS.json'
-    SA_PATH = Path(__file__).parent / 'beam_data' / 'utils' / 'Service Account' / 'lima-consulting-prd-6ccadd5cab81.json'
 
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(SA_PATH)
+    credentials_json = access_secret_version(project_id='lima-consulting-prd', secret_id='sm-limaconsulting')
+    
+    # Escrever as credenciais em um arquivo temporário
+    temp_credentials_path = '/tmp/google_application_credentials.json'
+    with open(temp_credentials_path, 'w') as f:
+        json.dump(credentials_json, f)  # Escreve a string JSON no arquivo
+
+
+    FILE_PATH = Path(__file__).parent / 'beam_data' / 'schemas' / 'NEWS.json'
+
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = temp_credentials_path
     schema_bq = None
 
 
@@ -31,7 +40,7 @@ def main(argv=None):
         conection_bd = (
             p
             | "START" >> beam.Create(['START'])
-            | "Conexão and query" >> beam.ParDo(CSVToDictGenerator('/home/fernando/repositorios/news-scraper-bigquery/news_scraper/news.csv'))
+            | "CSV_To_Dict" >> beam.ParDo(CSVToDictGenerator('/home/fernando/repositorios/news-scraper-bigquery/news_scraper/news.csv'))
         )
 
         carga = (

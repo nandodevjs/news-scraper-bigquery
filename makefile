@@ -17,7 +17,6 @@ run:
 	--staging_location gs://scrapy-bbc/Dataflow/staging \
 	--setup_file ./setup.py \
 
-
 api_local:
 	bash -c "cd API && uvicorn api:app --reload"
 
