@@ -1,8 +1,10 @@
 install:
 	pip install -r requirements.txt
 
-build:
-	gcloud builds submit . --
+
+scrapy_bbc:
+	bash -c "cd news_scraper && scrapy crawl bbc -O news.csv"
+
 
 run:
 	python3 main.py \
@@ -15,5 +17,10 @@ run:
 	--staging_location gs://scrapy-bbc/Dataflow/staging \
 	--setup_file ./setup.py \
 
-scrapy_bbc:
-	bash -c "source venv/bin/activate && cd news_scraper && scrapy crawl bbc -O news.csv"
+
+api_local:
+	bash -c "cd API && uvicorn api:app --reload"
+
+
+build:
+	gcloud builds submit . --

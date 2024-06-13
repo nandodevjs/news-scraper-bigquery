@@ -6,7 +6,7 @@ class CSVToDictGenerator(beam.DoFn):
     def __init__(self, file_path):
         """
         Classe que lê um arquivo CSV e fornece um generator que produz dicionários
-        representando as linhas do CSV.
+        representando as linhas do CSV. Este processo é realizado para simplificar a carga de dados no Bigquery.
 
         Args:
         file_path (str): O caminho do arquivo CSV.

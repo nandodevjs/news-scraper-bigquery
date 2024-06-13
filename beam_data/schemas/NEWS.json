@@ -1,28 +1,35 @@
 {
     "fields": [
         {
-            "name": "title",
+            "name": "URL",
             "mode": "NULLABLE",
             "type": "STRING",
             "description": null,
             "fields": []
         },
         {
-            "name": "publication_date",
+            "name": "TITLE",
             "mode": "NULLABLE",
             "type": "STRING",
             "description": null,
             "fields": []
         },
         {
-            "name": "author",
+            "name": "PUBLICATION_DATE",
             "mode": "NULLABLE",
             "type": "STRING",
             "description": null,
             "fields": []
         },
         {
-            "name": "news",
+            "name": "AUTHOR",
+            "mode": "NULLABLE",
+            "type": "STRING",
+            "description": null,
+            "fields": []
+        },
+        {
+            "name": "NEWS",
             "mode": "NULLABLE",
             "type": "STRING",
             "description": null,

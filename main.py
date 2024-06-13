@@ -1,7 +1,7 @@
 from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
 from apache_beam.options.pipeline_options import PipelineOptions
 from beam_data.options.p_options import Config_Options
-from beam_data.io.conection import CSVToDictGenerator
+from beam_data.io.csv_to_dict import CSVToDictGenerator
 
 import apache_beam as beam
 from pathlib import Path

@@ -1,7 +1,6 @@
-# api.py
 from fastapi import FastAPI, Query
 from google.cloud import bigquery
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.openapi.docs import get_redoc_html
 
 app = FastAPI()
@@ -9,9 +8,9 @@ app = FastAPI()
 client = bigquery.Client()
 
 # Endpoint raiz com redirecionamento para documentação
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=RedirectResponse)
 async def read_root():
-    return get_redoc_html(openapi_url="/openapi.json", title="FastAPI")
+    return RedirectResponse(url="/docs")
 
 @app.get("/extract-data", response_model=dict)
 async def extract_data(project: str = Query(..., description="ID do projeto BigQuery"),
@@ -24,6 +23,17 @@ async def extract_data(project: str = Query(..., description="ID do projeto BigQ
     - project: ID do projeto BigQuery.
     - dataset: Nome do dataset.
     - table: Nome da tabela.
+
+    Exemplo de Requisição:
+    GET /extract-data?project=meu-projeto&dataset=meu-dataset&table=minha-tabela
+
+    Exemplo de Resposta:
+    {
+        "results": [
+            {"coluna1": "valor1", "coluna2": "valor2"},
+            {"coluna1": "valor3", "coluna2": "valor4"}
+        ]
+    }
 
     """
     try:
@@ -56,6 +66,17 @@ async def search_data(project: str = Query(..., description="ID do projeto BigQu
     - table: Nome da tabela.
     - column: Nome da coluna para buscar.
     - search_term: Termo de busca.
+    
+    Exemplo de Requisição:
+    GET /extract-data?project=meu-projeto&dataset=meu-dataset&table=minha-tabela
+
+    Exemplo de Resposta:
+    {
+        "results": [
+            {"coluna1": "valor1", "coluna2": "valor2"},
+            {"coluna1": "valor3", "coluna2": "valor4"}
+        ]
+    }
 
     """
     try:

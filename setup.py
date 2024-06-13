@@ -65,6 +65,8 @@ REQUIRED_PACKAGES = [
         "scrapy",
         "pandas",
         "pathlib",
+        "fastapi",
+        "uvicorn",
     ]
 
 setuptools.setup(
