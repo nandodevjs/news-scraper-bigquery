@@ -10,7 +10,7 @@ Este projeto é uma aplicação composta por três componentes principais: um sc
 - [Execução do ETL](#Execução-do-projeto)
 
 
-## Estrutura do Projeto
+# Estrutura do Projeto
 ├── API
 │ ├── api.py
 │ ├── cloudbuild.yaml
