@@ -7,41 +7,43 @@ Este projeto é uma aplicação composta por três componentes principais: um sc
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Pré-requisitos](#pré-requisitos)
 - [Configuração e Instalação](#configuração-e-instalação)
-- [Execução do ETL](#Execução-do-projeto)
+- [Execução do ETL](#execução-do-etl)
 
+## Estrutura do Projeto
 
-# Estrutura do Projeto
+```plaintext
+.
 ├── API
-│ ├── api.py
-│ ├── cloudbuild.yaml
-│ ├── Dockerfile
-│ └── requirements.txt
+│   ├── api.py
+│   ├── cloudbuild.yaml
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── beam_data
-│ ├── io
-│ │ └── init.py
-│ │ └── csv_to_dict.py
-│ ├── options
-│ │ └── p_options.py
-│ ├── schemas
-│ │ └── NEWS.json
-│ ├── utils
-│ │ └── getting_sm.py
+│   ├── io
+│   │   ├── __init__.py
+│   │   └── csv_to_dict.py
+│   ├── options
+│   │   └── p_options.py
+│   ├── schemas
+│   │   └── NEWS.json
+│   ├── utils
+│   │   └── getting_sm.py
 ├── news_scraper
-│ ├── news_scraper
-│ │ ├── spiders
-│ │ │ ├── init.py
-│ │ │ └── bbc.py
-│ │ ├── init.py
-│ │ ├── items.py
-│ │ ├── middlewares.py
-│ │ ├── pipelines.py
-│ │ ├── settings.py
-│ ├── .dockerignore
-│ ├── Dockerfile
-│ ├── news.csv
-│ ├── requirements.txt
-│ ├── scrapy.cfg
-│ └── urls.txt
+│   ├── news_scraper
+│   │   ├── spiders
+│   │   │   ├── __init__.py
+│   │   │   └── bbc.py
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   ├── middlewares.py
+│   │   ├── pipelines.py
+│   │   ├── settings.py
+│   ├── .dockerignore
+│   ├── Dockerfile
+│   ├── news.csv
+│   ├── requirements.txt
+│   ├── scrapy.cfg
+│   └── urls.txt
 ├── venv (Ambiente Virtual Python)
 ├── .dockerignore
 ├── .gitignore
@@ -53,6 +55,8 @@ Este projeto é uma aplicação composta por três componentes principais: um sc
 ├── README.md
 ├── requirements.txt
 └── setup.py
+```
+
 
 ## Pré-requisitos
 Conta no Google Cloud Platform (GCP)
@@ -136,6 +140,7 @@ Endpoint para buscar palavras dentro de uma tabela do BigQuery.
 # URLS para extração:
 
 As URLS estão no arquivo urls.txt, caso queira adicionar uma nova URL, basta adicionar nele e setar no arquivo BBC.py dentro dos spiders.
+```plaintext
 ── news_scraper
 │ ├── news_scraper
 │ │ ├── spiders     <-----
@@ -152,7 +157,7 @@ As URLS estão no arquivo urls.txt, caso queira adicionar uma nova URL, basta ad
 │ ├── requirements.txt
 │ ├── scrapy.cfg
 │ └── urls.txt      <-----
-
+```
 
 # Resumo:
 
