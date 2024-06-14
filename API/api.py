@@ -24,16 +24,7 @@ async def extract_data(project: str = Query(..., description="ID do projeto BigQ
     - dataset: Nome do dataset.
     - table: Nome da tabela.
 
-    Exemplo de Requisição:
-    GET /extract-data?project=meu-projeto&dataset=meu-dataset&table=minha-tabela
 
-    Exemplo de Resposta:
-    {
-        "results": [
-            {"coluna1": "valor1", "coluna2": "valor2"},
-            {"coluna1": "valor3", "coluna2": "valor4"}
-        ]
-    }
 
     """
     try:
@@ -66,17 +57,7 @@ async def search_data(project: str = Query(..., description="ID do projeto BigQu
     - table: Nome da tabela.
     - column: Nome da coluna para buscar.
     - search_term: Termo de busca.
-    
-    Exemplo de Requisição:
-    GET /extract-data?project=meu-projeto&dataset=meu-dataset&table=minha-tabela
 
-    Exemplo de Resposta:
-    {
-        "results": [
-            {"coluna1": "valor1", "coluna2": "valor2"},
-            {"coluna1": "valor3", "coluna2": "valor4"}
-        ]
-    }
 
     """
     try:

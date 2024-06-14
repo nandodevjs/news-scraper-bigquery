@@ -19,7 +19,3 @@ run:
 
 api_local:
 	bash -c "cd API && uvicorn api:app --reload"
-
-
-build:
-	gcloud builds submit . --
