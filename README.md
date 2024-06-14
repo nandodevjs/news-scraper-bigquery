@@ -11,7 +11,6 @@ Este projeto é uma aplicação composta por três componentes principais: um sc
 
 
 ## Estrutura do Projeto
-.
 ├── API
 │ ├── api.py
 │ ├── cloudbuild.yaml
