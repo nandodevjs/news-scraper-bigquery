@@ -1,4 +1,4 @@
-# Projeto de Extração de Dados do BigQuery com Scrapy, Apache Beam e FastAPI
+# Projeto de Extração de Dados do BBC com Scrapy, BigQuery, Apache Beam e FastAPI
 
 Este projeto é uma aplicação composta por três componentes principais: um scraper desenvolvido com Scrapy, um pipeline de processamento de dados com Python e Apache Beam, e uma API construída com FastAPI para extração e consulta de dados armazenados no BigQuery.
 
